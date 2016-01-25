@@ -1,0 +1,82 @@
+﻿@model Studenter.Models.Teacher
+
+@{
+    ViewBag.Title = "Редактирование преподавателя";
+    var groups = Studenter.App<Studenter.Models.Group>.BaseManager.GetEntities();
+}
+
+<div class="col-md-10">
+    <div class="row">
+        <div class="panel panel-default bootstrap-admin-no-table-panel">
+            <div class="panel-heading">
+                <div class="text-muted bootstrap-admin-box-title">Преподаватель</div>
+            </div>
+            <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
+                @using (Html.BeginForm("Update", "Teacher", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <fieldset>
+                        <legend>Редактирование преподавателя</legend>
+                        <div class="row">
+                            <div class="col-md-5">
+
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.FirstName, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.TextBoxFor(x => x.FirstName, htmlAttributes: new { @clas = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.SecondName, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.TextBoxFor(x => x.SecondName, htmlAttributes: new { @clas = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+
+                                @Html.ListBoxFor(x => x.Groups,
+                            new List<SelectListItem>(
+                                    Model.Groups.Select(x => new SelectListItem() { Text = x.Name, Value = x.Id })), new { @class = "select-to", multiple = "multiple", size = 5 })
+
+
+                                
+                                <a href="JavaScript:void(0);" id="btn-remove">Удалить &raquo;</a>
+                                <a href="JavaScript:void(0);" id="btn-add">&laquo; Добавить</a>
+                             
+
+                                @Html.DropDownList("allGroups",
+                            new List<SelectListItem>(
+                                    groups.Select(x => new SelectListItem() { Text = x.Name, Value = x.Id })), new { @class = "select-from", multiple = "multiple", size = 5 })
+
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                        <button type="reset" class="btn btn-default">Очистить</button>
+                    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#btn-add').click(function () {
+                $('.select-from option:selected').each(function () {
+                    $('.select-to').append("<option value='" + $(this).val() + "'>" + $(this).text() + "</option>");
+                    $(this).remove();
+                });
+            });
+            $('#btn-remove').click(function () {
+                $('.select-to option:selected').each(function () {
+                    $('.select-from').append("<option value='" + $(this).val() + "'>" + $(this).text() + "</option>");
+                    $(this).remove();
+                });
+            });
+
+        });
+    </script>
+}

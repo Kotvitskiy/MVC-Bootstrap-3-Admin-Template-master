@@ -1,0 +1,43 @@
+﻿@model Studenter.Models.Student
+
+@{
+    ViewBag.Title = "Редактирование студента";
+}
+
+<div class="col-md-10">
+    <div class="row">
+        <div class="panel panel-default bootstrap-admin-no-table-panel">
+            <div class="panel-heading">
+                <div class="text-muted bootstrap-admin-box-title">Студент</div>
+            </div>
+            <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
+                @using (Html.BeginForm("Update", "Student", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <fieldset>
+                        <legend>Создание студента</legend>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.FirstName, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(x => x.FirstName, htmlAttributes: new { @clas = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.SecondName, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(x => x.SecondName, htmlAttributes: new { @clas = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Group, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(x => x.Group, htmlAttributes: new { @clas = "form-control" })
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                        <button type="reset" class="btn btn-default">Очистить</button>
+                    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+﻿@model Studenter.Models.Group
+
+@{
+    ViewBag.Title = "Редактирование групы";
+}
+
+<div class="col-md-10">
+    <div class="row">
+        <div class="panel panel-default bootstrap-admin-no-table-panel">
+            <div class="panel-heading">
+                <div class="text-muted bootstrap-admin-box-title">Группа</div>
+            </div>
+            <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
+                @using (Html.BeginForm("Update", "Group", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <fieldset>
+                        <legend>Создание группы</legend>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Name, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(x => x.Name, htmlAttributes: new { @clas = "form-control" })
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                        <button type="reset" class="btn btn-default">Очистить</button>
+                    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@model  List<Studenter.Models.Teacher>
+
+@{
+    ViewBag.Title = "Список студентов";
+}
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="text-muted bootstrap-admin-box-title"><a href="@Url.Action("Create", "Teacher")">+ Добавить преподавателя</a></div>
+        </div>
+        <div class="bootstrap-admin-panel-content">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Имя</th>
+                        <th>Фамилия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var student in Model.OrderBy(x => x.Name))
+                    {
+                        <tr>
+                            <td>@student.FirstName</td>
+                            <td>@student.SecondName</td>
+                        </tr>
+                    }                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

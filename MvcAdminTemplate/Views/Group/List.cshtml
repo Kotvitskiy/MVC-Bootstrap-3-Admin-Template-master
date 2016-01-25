@@ -1,0 +1,30 @@
+﻿@model  List<Studenter.Models.Group>
+
+@{
+    ViewBag.Title = "Список груп";
+}
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="text-muted bootstrap-admin-box-title"><a href="@Url.Action("Create", "Group")">+ Добавить группу</a></div>
+        </div>
+        <div class="bootstrap-admin-panel-content">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Название группы</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var student in Model.OrderBy(x => x.Name))
+                    {
+                        <tr>
+                            <td>@student.Name</td>
+                        </tr>
+                    }                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
